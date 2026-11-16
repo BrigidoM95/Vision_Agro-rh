@@ -1,13 +1,21 @@
-<aside class="sidebar">
-    <a class="sidebar-brand" href="/rh"><img src="/img/logo.png" alt="Vision Agro"><span>GESTÃO DE PESSOAS</span></a>
-    <div class="sidebar-section">MENU PRINCIPAL</div>
-    <nav class="sidebar-nav">
-        <a class="<%= active === 'dashboard' ? 'active' : '' %>" href="/rh"><span class="nav-icon">▦</span><span>Dashboard</span></a>
-        <a class="<%= active === 'colaboradores' ? 'active' : '' %>" href="/rh/colaboradores"><span class="nav-icon">♙</span><span>Colaboradores</span></a>
-        <a class="<%= active === 'departamentos' ? 'active' : '' %>" href="/rh/departamentos"><span class="nav-icon">▤</span><span>Departamentos</span></a>
-        <a class="<%= active === 'treinamentos' ? 'active' : '' %>" href="/rh/treinamentos"><span class="nav-icon">▣</span><span>Treinamentos</span></a>
-        <a class="<%= active === 'ferias' ? 'active' : '' %>" href="/rh/ferias"><span class="nav-icon">▦</span><span>Férias</span></a>
-        <a class="<%= active === 'folha' ? 'active' : '' %>" href="/rh/folha-pagamento"><span class="nav-icon">$</span><span>Folha de pagamento</span></a>
+<header class="top-header">
+    <a href="/rh" class="top-brand">
+        <img src="/img/logo.png" alt="Vision Agro">
+        <div class="top-brand-text">
+            <strong>VISION AGRO</strong>
+            <span>GESTÃO DE PESSOAS</span>
+        </div>
+    </a>
+    <nav class="main-navigation" aria-label="Navegação principal">
+        <a href="/" class="main-nav-link">Início</a>
+        <a href="/rh" class="main-nav-link active" aria-current="page">RH</a>
     </nav>
-    <div class="sidebar-bottom"><small>Vision Agro · RH</small></div>
-</aside>
+</header>
+<nav class="module-navigation" aria-label="Áreas de Recursos Humanos">
+    <a href="/rh" class="<%= active === 'dashboard' ? 'active' : '' %>">◷ Painel de RH</a>
+    <a href="/rh/colaboradores" class="<%= active === 'colaboradores' ? 'active' : '' %>">♟ Colaboradores</a>
+    <a href="/rh/departamentos" class="<%= active === 'departamentos' ? 'active' : '' %>">▤ Departamentos</a>
+    <a href="/rh/treinamentos" class="<%= active === 'treinamentos' ? 'active' : '' %>">♧ Treinamentos</a>
+    <a href="/rh/ferias" class="<%= active === 'ferias' ? 'active' : '' %>">▦ Férias</a>
+    <a href="/rh/folha-pagamento" class="<%= active === 'folha' ? 'active' : '' %>">$ Folha de pagamento</a>
+</nav>
