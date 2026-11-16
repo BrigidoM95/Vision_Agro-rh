@@ -594,3 +594,25 @@ body { overflow-x: hidden; }
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+
+/* TELA DE LOGIN */
+.login-body { min-height: 100vh; margin: 0; background: linear-gradient(135deg, #edf4ed, #f7f9f6); }
+.login-shell { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.login-card { width: min(100%, 440px); padding: 38px; background: #fff; border: 1px solid #e1e9e2; border-radius: 20px; box-shadow: 0 18px 55px rgba(15,54,38,.10); text-align: center; }
+.login-logo { display: block; width: 170px; height: 105px; object-fit: contain; margin: 0 auto 18px; }
+.login-eyebrow { color: #43805a; font-size: 11px; font-weight: 800; letter-spacing: 1.7px; }
+.login-card h1 { margin: 10px 0 8px; color: #164d32; font-size: 25px; }
+.login-description { margin: 0 0 25px; color: #68776d; font-size: 14px; line-height: 1.5; }
+.login-form { display: flex; flex-direction: column; text-align: left; gap: 9px; }
+.login-form label { margin-top: 8px; color: #354d3e; font-size: 13px; font-weight: 700; }
+.login-form input { width: 100%; min-height: 47px; padding: 12px 14px; border: 1px solid #d5e0d7; border-radius: 10px; outline: none; }
+.login-form input:focus { border-color: #19733e; box-shadow: 0 0 0 3px rgba(25,115,62,.10); }
+.login-form button { min-height: 48px; margin-top: 16px; border: 0; border-radius: 10px; background: #176b43; color: white; font-size: 14px; font-weight: 800; cursor: pointer; }
+.login-form button:hover { background: #124c32; }
+.login-error { margin: 0 0 18px; padding: 12px; border: 1px solid #edc2bb; border-radius: 9px; background: #fff0ed; color: #8b2c20; font-size: 13px; text-align: left; }
+.login-footer { margin: 26px 0 0; color: #8a978e; font-size: 11px; }
+.logout-form { margin-left: auto; }
+.logout-button { padding: 9px 15px; border: 1px solid rgba(255,255,255,.35); border-radius: 9px; background: transparent; color: white; font-weight: 700; cursor: pointer; }
+.logout-button:hover { background: rgba(255,255,255,.12); }
+@media (max-width: 600px) { .login-card { padding: 28px 22px; } .logout-form { margin: 8px 0 0; } }

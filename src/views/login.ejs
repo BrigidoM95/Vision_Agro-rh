@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar | Vision Agro</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-body">
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <img class="login-logo" src="/img/logo.png" alt="Logo Vision Agro">
+      <span class="login-eyebrow">SISTEMA DE GESTÃO</span>
+      <h1 id="login-title">Bem-vindo à Vision Agro</h1>
+      <p class="login-description">Entre com seu e-mail corporativo para acessar o sistema.</p>
+      <% if (erro) { %><div class="login-error" role="alert"><%= erro %></div><% } %>
+      <form class="login-form" action="/login" method="POST">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" value="<%= email %>" placeholder="seu.email@visionagro.com" autocomplete="username" required>
+        <label for="senha">Senha</label>
+        <input id="senha" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+        <button type="submit">Entrar no sistema</button>
+      </form>
+      <p class="login-footer">Vision Agro · Gestão de Pessoas</p>
+    </section>
+  </main>
+</body>
+</html>

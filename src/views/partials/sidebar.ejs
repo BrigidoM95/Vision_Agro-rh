@@ -10,6 +10,9 @@
         <a href="/" class="main-nav-link">Início</a>
         <a href="/rh" class="main-nav-link active" aria-current="page">RH</a>
     </nav>
+    <form class="logout-form" action="/logout" method="POST">
+        <button type="submit" class="logout-button">Sair</button>
+    </form>
 </header>
 <nav class="module-navigation" aria-label="Áreas de Recursos Humanos">
     <a href="/rh" class="<%= active === 'dashboard' ? 'active' : '' %>">◷ Painel de RH</a>

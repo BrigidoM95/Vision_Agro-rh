@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const indexRoutes = require('./routes/index_routes');
 const rhRoutes = require('./routes/rh_routes');
+const { exigirLogin } = require('./middleware/auth');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -10,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', indexRoutes);
-app.use('/rh', rhRoutes);
+app.use('/rh', exigirLogin, rhRoutes);
 app.use((req, res) => res.status(404).send('Página não encontrada. <a href="/">Voltar ao início</a>'));
 
 if (require.main === module) {
