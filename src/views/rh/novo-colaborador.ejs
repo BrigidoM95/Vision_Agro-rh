@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo colaborador | Vision Agro</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout"><%- include('../partials/sidebar', { active: 'colaboradores' }) %><div class="main-content">
+    
+    <main class="page form-page">
+        <div class="page-heading"><div><span class="eyebrow">RECURSOS HUMANOS</span><h1>Cadastrar colaborador</h1><p>Preencha os dados profissionais e de contratação.</p></div></div>
+        <% if (erro) { %><div class="alert"><%= erro %></div><% } %>
+        <form class="form-card" action="/rh/colaboradores" method="POST">
+            <div class="form-section-title">Dados pessoais e profissionais</div>
+            <div class="form-grid">
+                <label>Nome completo *<input name="nome" required maxlength="150" value="<%= valores.nome || '' %>" placeholder="Ex.: Ana Silva"></label>
+                <label>E-mail *<input type="email" name="email" required maxlength="150" value="<%= valores.email || '' %>" placeholder="ana@visionagro.com"></label>
+                <label>Telefone<input name="telefone" maxlength="30" value="<%= valores.telefone || '' %>" placeholder="(67) 99999-9999"></label>
+                <label>Cargo *<input name="cargo" required maxlength="100" value="<%= valores.cargo || '' %>" placeholder="Ex.: Analista de RH"></label>
+                <label>Salário atual (R$) *<input name="salario" type="number" required min="0" step="0.01" value="<%= valores.salario || '' %>" placeholder="2500.00"></label>
+                <label>Data de contratação *<input name="data_admissao" type="date" required value="<%= valores.data_admissao || '' %>"></label>
+                <label>Departamento *
+                    <select name="departamento_id" required>
+                        <option value="">Selecione um departamento</option>
+                        <% departamentos.forEach(departamento => { %>
+                            <option value="<%= departamento.id %>" <%= String(valores.departamento_id || '') === String(departamento.id) ? 'selected' : '' %>><%= departamento.nome %></option>
+                        <% }); %>
+                    </select>
+                </label>
+                <label>Status
+                    <select name="status">
+                        <option value="Ativo" <%= !valores.status || valores.status === 'Ativo' ? 'selected' : '' %>>Ativo</option>
+                        <option value="Inativo" <%= valores.status === 'Inativo' ? 'selected' : '' %>>Inativo</option>
+                    </select>
+                </label>
+            </div>
+            <p class="form-note">Os campos marcados com * são obrigatórios. O e-mail deve ser único.</p>
+            <div class="form-actions"><a class="button button-secondary" href="/rh/colaboradores">Cancelar</a><button class="button button-primary" type="submit">Salvar colaborador</button></div>
+        </form>
+    </main>
+</div></div>
+</body>
+</html>

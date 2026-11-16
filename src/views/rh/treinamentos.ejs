@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamentos | Vision Agro</title><link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout"><%- include('../partials/sidebar', { active: 'treinamentos' }) %><div class="main-content">
+
+<main class="page">
+    <div class="page-heading"><div><span class="eyebrow">RECURSOS HUMANOS</span><h1>Treinamentos</h1><p>Agende treinamentos para os colaboradores com data, hora e duração prevista.</p></div></div>
+
+    <% if (erro) { %><div class="alert"><%= erro %></div><% } %>
+
+    <form id="form-treinamento" class="form-card" action="/rh/treinamentos" method="POST">
+        <div class="form-section-title">Agendar treinamento</div>
+        <div class="form-grid">
+            <label>Colaborador *
+                <select name="colaborador_id" required>
+                    <option value="">Selecione um colaborador</option>
+                    <% colaboradores.forEach(c => { %>
+                        <option value="<%= c.id %>" <%= String(valores.colaborador_id || '') === String(c.id) ? 'selected' : '' %>><%= c.nome %> — <%= c.departamento %></option>
+                    <% }); %>
+                </select>
+            </label>
+            <label>Treinamento *
+                <input name="titulo" required maxlength="150" placeholder="Ex.: Segurança no trabalho (NR-31)" value="<%= valores.titulo || '' %>">
+            </label>
+            <label>Data de início *
+                <input type="date" name="data_treinamento" required value="<%= valores.data_treinamento || '' %>">
+            </label>
+            <label>Hora de início *
+                <input type="time" name="hora_inicio" required value="<%= valores.hora_inicio || '' %>">
+            </label>
+            <label>Previsão de duração (horas) *
+                <input type="number" name="duracao_horas" required min="0.5" max="72" step="0.5" placeholder="Ex.: 4" value="<%= valores.duracao_horas || '' %>">
+            </label>
+            <label>Previsão de término
+                <input type="text" id="termino-previsto" readonly placeholder="Preencha data, hora e duração" tabindex="-1">
+            </label>
+        </div>
+        <p class="form-note">Todos os campos marcados com * são obrigatórios. Não é possível agendar durante as férias do colaborador nem em horário que coincida com outro treinamento dele.</p>
+        <div class="form-actions"><button class="button button-primary" type="submit">Agendar treinamento</button></div>
+    </form>
+
+    <div class="table-card">
+        <div class="table-toolbar"><strong>Treinamentos agendados</strong><span><%= treinamentos.length %> registro(s)</span></div>
+        <div class="table-wrap"><table>
+            <thead><tr><th>Colaborador</th><th>Treinamento</th><th>Data</th><th>Início</th><th>Duração prevista</th><th>Término previsto</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody>
+            <% if (treinamentos.length === 0) { %><tr><td colspan="8" class="empty">Nenhum treinamento cadastrado ainda.</td></tr><% } %>
+            <% treinamentos.forEach(t => { %>
+                <tr>
+                    <td><strong><%= t.colaborador %></strong></td>
+                    <td><%= t.titulo %></td>
+                    <td><%= t.data_br %></td>
+                    <td><%= t.hora_br %></td>
+                    <td><%= t.duracao_txt %></td>
+                    <td><%= t.termino_txt %></td>
+                    <td><span class="status <%= t.status_classe %>"><%= t.status_exibido %></span></td>
+                    <td><form action="/rh/treinamentos/<%= t.id %>/excluir" method="POST" onsubmit="return confirm('Remover este treinamento?');"><button class="button button-danger button-small" type="submit">Remover</button></form></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table></div>
+    </div>
+</main></div></div>
+<script src="/js/scripts.js"></script>
+</body></html>

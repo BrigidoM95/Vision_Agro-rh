@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RH | Vision Agro</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout"><%- include('../partials/sidebar', { active: 'dashboard' }) %><div class="main-content">
+    
+    <main class="page">
+        <section class="hero">
+            <div>
+                <span class="eyebrow">VISION AGRO · GESTÃO DE PESSOAS</span>
+                <h1>Recursos Humanos</h1>
+                <p>Acompanhe os colaboradores, atualize salários e organize as informações da equipe em um só lugar.</p>
+            </div>
+            <a class="button button-primary" href="/rh/colaboradores/novo">+ Cadastrar colaborador</a>
+        </section>
+        <section class="cards">
+            <a href="/rh/colaboradores" class="card">
+                <span class="card-icon">👥</span><h2>Colaboradores</h2><span class="card-link">Abrir área →</span>
+            </a>
+            <a href="/rh/departamentos" class="card">
+                <span class="card-icon">🏢</span><h2>Departamentos</h2><span class="card-link">Abrir área →</span>
+            </a>
+            <a href="/rh/treinamentos" class="card">
+                <span class="card-icon">📚</span><h2>Treinamentos</h2><span class="card-link">Abrir área →</span>
+            </a>
+            <a href="/rh/ferias" class="card">
+                <span class="card-icon">📅</span><h2>Férias</h2><span class="card-link">Abrir área →</span>
+            </a>
+        </section>
+    </main>
+    <footer class="site-footer">Vision Agro · Sistema Integrado de Gestão</footer>
+</div></div>
+</body>
+</html>

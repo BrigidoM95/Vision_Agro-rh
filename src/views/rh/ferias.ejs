@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Férias | Vision Agro</title><link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout"><%- include('../partials/sidebar', { active: 'ferias' }) %><div class="main-content">
+
+<main class="page">
+    <div class="page-heading"><div><span class="eyebrow">RECURSOS HUMANOS</span><h1>Férias</h1><p>Programe as férias dos colaboradores e acompanhe início e retorno no calendário.</p></div></div>
+
+    <% if (erro) { %><div class="alert"><%= erro %></div><% } %>
+
+    <form id="form-ferias" class="form-card" action="/rh/ferias" method="POST">
+        <div class="form-section-title">Programar férias</div>
+        <div class="vac-layout">
+            <div class="form-grid vac-fields">
+                <label class="span-2">Colaborador *
+                    <select name="colaborador_id" required>
+                        <option value="">Selecione um colaborador</option>
+                        <% colaboradores.forEach(c => { %>
+                            <option value="<%= c.id %>" <%= String(valores.colaborador_id || '') === String(c.id) ? 'selected' : '' %>><%= c.nome %> — <%= c.departamento %></option>
+                        <% }); %>
+                    </select>
+                </label>
+                <label>Data de início *
+                    <input type="date" name="data_inicio" required value="<%= valores.data_inicio || '' %>">
+                </label>
+                <label>Tempo de férias (dias) *
+                    <input type="number" name="dias" required min="1" max="30" step="1" value="<%= valores.dias || 30 %>">
+                </label>
+                <p class="form-note span-2">Informe de 1 a 30 dias corridos. O retorno é calculado para o primeiro dia útil (segunda a sexta) após o último dia de férias.</p>
+            </div>
+
+            <div class="vac-preview">
+                <strong class="preview-title">Pré-visualização</strong>
+                <div class="vac-summary" id="resumo-ferias">
+                    <div><span>Início</span><strong data-resumo="inicio">—</strong></div>
+                    <div><span>Último dia</span><strong data-resumo="fim">—</strong></div>
+                    <div><span>Retorno</span><strong data-resumo="retorno">—</strong></div>
+                </div>
+                <div class="mini-cal" id="preview-calendario"></div>
+                <div class="cal-legend"><span class="lg lg-ferias"></span>Férias <span class="lg lg-retorno"></span>Retorno</div>
+            </div>
+        </div>
+        <div class="form-actions"><button class="button button-primary" type="submit">Registrar férias</button></div>
+    </form>
+
+    <div class="table-toolbar vac-toolbar"><strong>Férias registradas</strong><span><%= ferias.length %> registro(s)</span></div>
+
+    <% if (ferias.length === 0) { %>
+        <div class="table-card"><p class="empty">Nenhum período de férias cadastrado ainda.</p></div>
+    <% } %>
+
+    <div class="vac-grid">
+        <% ferias.forEach(f => { %>
+        <article class="vac-card">
+            <header>
+                <div><strong><%= f.colaborador %></strong><small><%= f.cargo %></small></div>
+                <span class="status <%= f.status_classe %>"><%= f.status %></span>
+            </header>
+            <dl class="vac-dates">
+                <div><dt>Início</dt><dd><%= f.inicio_br %></dd></div>
+                <div><dt>Último dia</dt><dd><%= f.fim_br %></dd></div>
+                <div><dt>Retorno</dt><dd><%= f.retorno_br %></dd></div>
+                <div><dt>Duração</dt><dd><%= f.dias %> dia(s)</dd></div>
+            </dl>
+            <div class="mini-cal" data-inicio="<%= f.data_inicio %>" data-fim="<%= f.data_fim %>" data-retorno="<%= f.data_retorno %>"></div>
+            <form action="/rh/ferias/<%= f.id %>/excluir" method="POST" onsubmit="return confirm('Remover este período de férias?');">
+                <button class="button button-danger button-small" type="submit">Remover</button>
+            </form>
+        </article>
+        <% }); %>
+    </div>
+</main></div></div>
+<script src="/js/scripts.js"></script>
+</body></html>

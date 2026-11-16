@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departamentos | Vision Agro</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout"><%- include('../partials/sidebar', { active: 'departamentos' }) %><div class="main-content">
+    
+    <main class="page">
+        <div class="page-heading"><div><span class="eyebrow">RECURSOS HUMANOS</span><h1>Departamentos</h1><p>Consulte e filtre os colaboradores por departamento. Os departamentos são opções de cadastro, sem módulos próprios no dashboard.</p></div></div>
+        <section class="department-grid">
+            <% departamentos.forEach(departamento => { %>
+                <a class="department-card <%= String(departamentoId || '') === String(departamento.id) ? 'selected' : '' %>" href="/rh/departamentos?departamento=<%= departamento.id %>">
+                    <span class="department-symbol">▦</span><strong><%= departamento.nome %></strong>
+                    <% if (departamento.nome !== 'Clientes') { %>
+                        <span><%= departamento.total_colaboradores %> colaborador(es)</span>
+                    <% } %>
+                    <span>Folha: <%= Number(departamento.folha_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></span>
+                    <small><%= departamento.descricao %></small>
+                </a>
+            <% }); %>
+        </section>
+        <div class="filter-bar">
+            <div><h2><%= departamentoId ? 'Colaboradores do departamento selecionado' : 'Todos os colaboradores' %></h2><p>Use o filtro para alterar a lista abaixo.</p></div>
+            <form action="/rh/departamentos" method="GET" class="filter-form">
+                <label class="sr-only" for="departamento">Filtrar departamento</label>
+                <select id="departamento" name="departamento" onchange="this.form.submit()">
+                    <option value="">Todos os departamentos</option>
+                    <% departamentos.forEach(departamento => { %>
+                        <option value="<%= departamento.id %>" <%= String(departamentoId || '') === String(departamento.id) ? 'selected' : '' %>><%= departamento.nome %></option>
+                    <% }); %>
+                </select>
+                <noscript><button class="button button-primary" type="submit">Filtrar</button></noscript>
+            </form>
+        </div>
+        <div class="table-card"><div class="table-wrap"><table>
+            <thead><tr><th>Nome</th><th>Cargo</th><th>Departamento</th><th>Salário</th><th>Contratação</th><th>Status</th></tr></thead>
+            <tbody>
+            <% if (colaboradores.length === 0) { %><tr><td colspan="6" class="empty">Nenhum colaborador encontrado para este filtro.</td></tr><% } %>
+            <% colaboradores.forEach(colaborador => { %>
+                <tr>
+                    <td><strong><%= colaborador.nome %></strong><small><%= colaborador.email %></small></td>
+                    <td><%= colaborador.cargo %></td><td><%= colaborador.departamento %></td>
+                    <td><%= colaborador.salario === null || colaborador.salario === undefined ? 'Não informado' : Number(colaborador.salario).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></td>
+                    <td><%= colaborador.data_admissao ? new Date(colaborador.data_admissao + 'T00:00:00').toLocaleDateString('pt-BR') : '—' %></td>
+                    <td><span class="status <%= colaborador.status === 'Ativo' ? 'status-ativo' : 'status-inativo' %>"><%= colaborador.status %></span></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table></div></div>
+    </main>
+</div></div>
+</body>
+</html>

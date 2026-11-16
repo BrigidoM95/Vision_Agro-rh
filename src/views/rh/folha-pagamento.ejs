@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha de pagamento | Vision Agro</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout"><%- include('../partials/sidebar', { active: 'folha' }) %><div class="main-content">
+    <main class="page">
+        <div class="page-heading">
+            <div><span class="eyebrow">RECURSOS HUMANOS</span><h1>Folha de pagamento</h1><p>Valores da folha por área, considerando apenas colaboradores ativos.</p></div>
+        </div>
+
+        <section class="payroll-summary">
+            <div class="payroll-box">
+                <span>Total da folha</span>
+                <strong><%= totalGeral.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></strong>
+            </div>
+            <div class="payroll-box">
+                <span>Colaboradores ativos</span>
+                <strong><%= totalAtivos %></strong>
+            </div>
+        </section>
+
+        <div class="table-card">
+            <div class="table-toolbar"><strong>Valores por área</strong></div>
+            <div class="table-wrap"><table>
+                <thead><tr><th>Área</th><th>Ativos</th><th>Média salarial</th><th>Total da folha</th></tr></thead>
+                <tbody>
+                <% resumo.forEach(r => { %>
+                    <tr>
+                        <td><span class="department-tag"><%= r.nome %></span></td>
+                        <td><%= r.total_ativos %></td>
+                        <td><%= r.media_salarial.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></td>
+                        <td class="salary"><%= r.total_folha.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></td>
+                    </tr>
+                <% }); %>
+                    <tr>
+                        <td><strong>Total geral</strong></td>
+                        <td><strong><%= totalAtivos %></strong></td>
+                        <td></td>
+                        <td class="salary"><%= totalGeral.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></td>
+                    </tr>
+                </tbody>
+            </table></div>
+        </div>
+
+        <div class="table-card" style="margin-top:24px;">
+            <div class="table-toolbar"><strong>Detalhamento da folha</strong><span><%= colaboradores.length %> colaborador(es)</span></div>
+            <div class="table-wrap"><table>
+                <thead><tr><th>Colaborador</th><th>Cargo</th><th>Área</th><th>Salário</th></tr></thead>
+                <tbody>
+                <% if (colaboradores.length === 0) { %>
+                    <tr><td colspan="4" class="empty">Nenhum colaborador ativo.</td></tr>
+                <% } %>
+                <% colaboradores.forEach(c => { %>
+                    <tr>
+                        <td><strong><%= c.nome %></strong></td>
+                        <td><%= c.cargo %></td>
+                        <td><%= c.departamento %></td>
+                        <td class="salary"><%= c.salario === null || c.salario === undefined ? 'Não informado' : Number(c.salario).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table></div>
+        </div>
+    </main>
+</div></div>
+</body>
+</html>
