@@ -9,10 +9,10 @@ const departamentos = [
 ];
 
 let colaboradores = [
-  { id: 1, nome: 'Jão', email: 'jao@visionagro.com', telefone: '(67) 99999-1111', cargo: 'Analista de RH', salario: 2000.00, data_admissao: '2025-02-10', status: 'Ativo', departamento_id: 2 },
-  { id: 2, nome: 'Biu', email: 'biu@visionagro.com', telefone: '(67) 99999-2222', cargo: 'Suporte', salario: 1650.00, data_admissao: '2025-04-15', status: 'Ativo', departamento_id: 4 },
-  { id: 3, nome: 'Games edu', email: 'games@visionagro.com', telefone: '(67) 99999-3333', cargo: 'Analista Financeiro', salario: 1850.00, data_admissao: '2024-08-20', status: 'Ativo', departamento_id: 1 },
-  { id: 4, nome: 'Vitor', email: 'vitor@gmail.com', telefone: '(67) 99999-2222', cargo: 'Gestor de Vendas', salario: 2500.00, data_admissao: '2025-04-15', status: 'Ativo', departamento_id: 3 },
+  { id: 1, nome: 'João Vitor', email: 'joao@visionagro.com', telefone: '(67) 99999-1111', cargo: 'Analista de RH', salario: 2000.00, data_admissao: '2025-02-10', status: 'Ativo', departamento_id: 2 },
+  { id: 2, nome: 'Bianca ias', email: 'bianca@visionagro.com', telefone: '(67) 99999-2222', cargo: 'Suporte', salario: 1650.00, data_admissao: '2025-04-15', status: 'Ativo', departamento_id: 4 },
+  { id: 3, nome: 'Luis Felipe', email: 'luis@visionagro.com', telefone: '(67) 99999-3333', cargo: 'Analista Financeiro', salario: 1850.00, data_admissao: '2024-08-20', status: 'Ativo', departamento_id: 1 },
+  { id: 4, nome: 'Vitor Nascimento', email: 'vitor@gmail.com', telefone: '(67) 99999-2222', cargo: 'Gestor de Vendas', salario: 2500.00, data_admissao: '2025-04-15', status: 'Ativo', departamento_id: 3 },
   { id: 5, nome: 'Admin', email: 'admin@visionagro', telefone: '(67) 99999-2222', cargo: 'Administrador', salario: 6700.00, data_admissao: '2025-03-10', status: 'Ativo', departamento_id: 5 },
 
 ];
