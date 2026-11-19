@@ -5,14 +5,16 @@ const departamentos = [
   { id: 2, nome: 'Marketing', descricao: 'Responsável pelas ações de divulgação da Vision Agro' },
   { id: 3, nome: 'Vendas', descricao: 'Responsável pelo processo comercial da Vision Agro' },
   { id: 4, nome: 'Clientes', descricao: 'Responsável pelo atendimento aos clientes da Vision Agro' },
-  { id: 5, nome: 'Recursos Humanos', descricao: 'Responsável pela gestão de pessoas da Vision Agro' }
+  { id: 5, nome: 'Recursos Humanos', descricao: 'Responsável pela gestão de pessoas da Vision Agro' },
 ];
 
 let colaboradores = [
   { id: 1, nome: 'Jão', email: 'jao@visionagro.com', telefone: '(67) 99999-1111', cargo: 'Analista de RH', salario: 1999.98, data_admissao: '2025-02-10', status: 'Ativo', departamento_id: 2 },
   { id: 2, nome: 'Biu', email: 'biu@visionagro.com', telefone: '(67) 99999-2222', cargo: 'Assistente Administrativo', salario: 10000, data_admissao: '2025-04-15', status: 'Ativo', departamento_id: 5 },
   { id: 3, nome: 'Games edu', email: 'games@visionagro.com', telefone: '(67) 99999-3333', cargo: 'Analista Financeiro', salario: 11, data_admissao: '2024-08-20', status: 'Ativo', departamento_id: 1 },
-  { id: 4, nome: 'Biu', email: 'bia@gmail.com', telefone: '(67) 99999-2222', cargo: 'Assistente Administrativo', salario: 10000, data_admissao: '2025-04-15', status: 'Inativo', departamento_id: 5 }
+  { id: 4, nome: 'Biu', email: 'bia@gmail.com', telefone: '(67) 99999-2222', cargo: 'Assistente Administrativo', salario: 10000, data_admissao: '2025-04-15', status: 'Inativo', departamento_id: 5 },
+  { id: 5, nome: 'Admin', email: 'admin@visionagro', telefone: '(67) 99999-2222', cargo: 'Assistente Administrativo', salario: 10000, data_admissao: '2025-03-10', status: 'Ativo', departamento_id: 5 },
+
 ];
 let treinamentos = [];
 let ferias = [];
